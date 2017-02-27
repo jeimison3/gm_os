@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta id="tema" name='theme-color' content='rgb(255,255,255)' />
+<link rel="stylesheet" href="lib/jquery-ui.min.css">
+<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="lib/bdphp.css">
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery-ui.min.js"></script>
+<script src="lib/jquery.maskedinput.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script>
+var paginaAtiva=1;
+function nnulo(entrada){
+return (entrada!=null)&&(String(entrada)!="-1")&&(String(entrada)!="");
+}
+function PageDataUpdate(lin,dat,callb){
+$.ajax({
+url: lin,
+data: dat,
+type: 'post',
+error: function (xhr, ajaxOptions, thrownError) { //Caso de ERRO
+alert("Erro:\n"+thrownError+'\n>'+xhr.responseText);
+},
+success: callb,
+processData: false,	
+cache: false,
+contentType: false
+});
+}
+function updtPagn(nmPg){
+var fmd = new FormData();
+fmd.append("i",nmPg);
+PageDataUpdate("controle.php",fmd,function(resul){
+$("#conteudo").fadeOut(200,function(){
+$("#conteudo").html(resul);
+$("#conteudo").fadeIn(300);
+paginaAtiva=nmPg;
+});
+});
+}
+function updPg(){updtPagn(paginaAtiva);}
+$(document).ready(function(){
+updPg();
+});
+
+</script>
+<style>
+@keyframes moveBack{
+	0%{background-position: 0 0;}
+	25%{background-position: 0 40%;}
+	50%{background-position: 100% 40%;}
+	75%{background-position: 100% 0;}
+	100%{background-position: 0 0;}
+}
+.desabili:hover{
+cursor: not-allowed;
+background-color: rgba(255,255,255,0.75);
+}
+.desabili{
+background-color: rgba(255,255,255,0.85);
+color: #8D8D8D;
+}
+</style>
+<title>GM_OS</title>
+</head>
+<body>
+<div class="fluid-container">
+<div id="conteudo">
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<center>
+<div style="background-color:rgba(250,250,250,0.4)" class="jumbotron">
+    <div class="container">
+    <div class="page-header">
+  	<center><!--<img src="" height="10%"></img>-->
+  	<h2 style="color:white;">GM_OS<br/><small style="color:rgb(200,200,200);">//Em desenvolvimento</small></h2>
+	</center></div>
+	</div>
+  </div>
+<div class="container">
+<div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6" id="atvLogin"></div>
+<script>
+var backgroundPage = document.createElement("div");
+var formu = document.createElement("form");
+var linhUs = document.createElement("div");
+var linhPas = document.createElement("div");
+var linhBtnLog = document.createElement("div");
+var linhBtnReg = document.createElement("div");
+var rowUs = document.createElement("div");
+var rowPas = document.createElement("div");
+var rowBtn = document.createElement("div");
+var btnLog = document.createElement("button");
+var btnReg = document.createElement("button");
+var inUs = document.createElement("input");
+var inPas = document.createElement("input");
+$(".page-header").css("border-bottom","none");
+$("body").css("background","url('./img/sky-570337.jpg')");
+$("body").css("animation","moveBack 50s linear infinite");
+
+$(rowUs).attr("class","row");
+$(rowPas).attr("class","row");
+$(rowBtn).attr("class","row");
+
+$(linhUs).attr("class","col-xs-12 col-sm-ofsset-1 col-sm-10");
+$(linhPas).attr("class","col-xs-12 col-sm-ofsset-1 col-sm-10");
+$(linhBtnReg).attr("class","col-sm-offset-1 col-xs-12 col-sm-5");
+$(linhBtnLog).attr("class","col-xs-12 col-sm-5");
+$(linhUs).css("float","none");
+$(linhPas).css("float","none");
+$(linhUs).css("margin-top","10px");
+$(linhPas).css("margin-top","10px");
+$(linhBtnLog).css("margin-top","10px");
+$(linhBtnReg).css("margin-top","10px");
+$(linhUs).css("margin-bottom","10px");
+$(linhPas).css("margin-bottom","10px");
+$(linhBtnLog).css("margin-bottom","10px");
+$(linhBtnReg).css("margin-bottom","10px");
+
+
+$(inUs).attr("class","form-control");
+$(inPas).attr("class","form-control");
+$(btnLog).attr("class","btn btn-success");
+$(btnReg).attr("class","btn btn-warning");
+$(inUs).attr("placeholder","Usuário");
+$(inPas).attr("placeholder","Senha");
+
+$(btnLog).css("cursor","pointer");
+$(btnLog).css("width","100%");
+$(btnLog).attr("type","submit");
+$(btnLog).html("Login");
+
+
+$(btnReg).css("cursor","pointer");
+$(btnReg).css("width","100%");
+$(btnReg).attr("type","button");
+$(btnReg).html("Registrar");
+
+$(btnReg).click(function(){
+paginaAtiva=2;
+updPg();
+});
+
+$(linhUs).append(inUs);
+$(linhPas).append(inPas);
+$(linhBtnReg).append(btnReg);
+$(linhBtnLog).append(btnLog);
+$(rowUs).append(linhUs);
+$(rowPas).append(linhPas);
+$(rowBtn).append(linhBtnReg);
+$(rowBtn).append(linhBtnLog);
+$(formu).append(rowUs);
+$(formu).append(rowPas);
+$(formu).append(rowBtn);
+$("#atvLogin").append(formu);
+
+/*
+$(function(){
+var chck = setInterval(function(){
+if($(document).height()!=0){
+var Height = $(document).height(),Width = $(document).width();
+$(backgroundPage).css("background-image","url('./img/sky-949091.jpg')");
+$(backgroundPage).css("position","absolute");
+$(backgroundPage).css("left","0px");
+$(backgroundPage).css("top","0px");
+$(backgroundPage).css("width",Width+"px");
+$(backgroundPage).css("height",Height+"px");
+var blurVal= 4;
+$(backgroundPage).css("-webkit-filter","blur("+blurVal+"px)");
+$(backgroundPage).css("-moz-filter","blur("+blurVal+"px)");
+$(backgroundPage).css("-o-filter","blur("+blurVal+"px)");
+$(backgroundPage).css("-ms-filter","blur("+blurVal+"px)");
+$(backgroundPage).css("filter","blur("+blurVal+"px)");
+//$("body").prepend(backgroundPage);
+clearInterval(chck);
+}else{console.log("Erro...");}
+},100);
+});
+*/
+</script>
+</div>
+</center>

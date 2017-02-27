@@ -1,0 +1,13 @@
+$dat = json_decode($_COOKIE['_sid'],true);
+
+$dat['uid']
+
+md5(
+
+function forceLogout(){
+if (isset($_COOKIE['_sid'])){
+    unset($_COOKIE['_sid']);
+    setcookie('_sid', '', time() - 3600);
+	return true;
+} else return false;
+}
