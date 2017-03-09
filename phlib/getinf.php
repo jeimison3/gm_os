@@ -17,16 +17,17 @@ if ($stmt = mysqli_prepare($con, $query)) {
 }
 
 function GetKeyByCredenLogin($Usnm,$Passwd){
-include('zconbd.php');
-$query = "SELECT passwd,numsec,key_value from usuarios inner join usuarios_keys on usuarios_keys.id_usr=usuarios.id_usr and username=?";
+include('./phlib/zconbd.php');
+include('./phlib/sec.php');
+$query = "SELECT usuarios.passwd,usuarios.numsec,usuarios_keys.key_value from usuarios inner join usuarios_keys on usuarios_keys.id_usr=usuarios.id_usr and usuarios.username=?";
 $erroFinal = -1;//Sem conexão com o banco de dados
 $key="?";
 if ($stmt = mysqli_prepare($con, $query)){
 	mysqli_stmt_bind_param($stmt, 's', $entr);
 	$entr = $Usnm;
 	mysqli_stmt_execute($stmt);
-	$erroFinal = 0;//Dados de login incorretos.	
-	if(mysqli_stmt_affected_rows($stmtKey)==1){
+	$erroFinal = 0;//Dados de login incorretos.
+	if(mysqli_stmt_affected_rows($stmt)==-1){
 	mysqli_stmt_bind_result($stmt, $passencoded, $numsec, $keypass);
 	mysqli_stmt_fetch($stmt);
 	mysqli_stmt_close($stmt);

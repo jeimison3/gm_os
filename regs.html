@@ -83,6 +83,46 @@ $(formu).append(rowPas);
 $(formu).append(rowBtn);
 $("#atvLogin").append(formu);
 
+$(formu).submit(function(e){
+        e.preventDefault();
+		var preenchimento = nnulo($(inUs).val())&&nnulo($(inPas).val());
+		var formData = new FormData();
+if(preenchimento){
+        formData.append('usnm', $(inUs).val().trim());
+        formData.append('pass', $(inPas).val().trim());
+		$(btnLog).hide(100);
+
+          $.ajax({
+            url: "login.php",
+            data: formData,
+            type: 'post',
+			error: function (xhr, ajaxOptions, thrownError) { //Caso de ERRO
+			console.log("Erro:\n"+thrownError+'\n>'+xhr.responseText);
+			$(formu).submit();
+			},
+            success: function(response) //Para conclusão
+            {
+			if(response.status==1){
+			alert("Login concluído.");
+			updtPagn(1);
+			}else{
+				if(response.status==0)
+				alert("Usuário ou senha incorretos. Cód. 0");
+				else if(response.status==-1)
+				alert("Falha na conexão com o banco. Cód. -1");
+				else alert("Erro desconhecido: Cód. "+response.status);
+				$(btnLog).show(100);
+			}
+                //alert(response);
+            },
+            processData: false,	
+            cache: false,
+            contentType: false
+          });
+		  
+		  }//Se tudo foi preenchido, vai chegar até aqui.
+		  else{alert("Preencha todos os campos.");}
+});
 /*
 $(function(){
 var chck = setInterval(function(){

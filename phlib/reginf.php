@@ -73,12 +73,10 @@ else return 8; //Erro desconhecido :x
 //=========================================================================
 
 function logar_usuario($UserName,$Passwd){
+include("./phlib/getinf.php");
 $keyRead = GetKeyByCredenLogin($UserName,$Passwd);
-if ($keyRead["errorcode"]!=1)
-	return $keyRead["errorcode"];
-else{
-	return 1;
-	AddCookieLog($keyRead["key"]);
-}	
+$resumo = $keyRead["errorcode"];
+if ($resumo==1) AddCookieLog($keyRead["key"]);
+return $resumo;
 }
 ?>
