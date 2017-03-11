@@ -5,7 +5,7 @@ header('Content-type: application/json');
 $ZeroFMail="zero@fill.com";
 
 function InscricoesAtivas(){
-include('zconbd.php');
+include_once('zconbd.php');
 $query = "SELECT periodo_inscri from system_defs";
 if ($stmt = mysqli_prepare($con, $query)) {
 	mysqli_stmt_execute($stmt);
@@ -28,7 +28,7 @@ return $resu;
 
 
 function registrar_usuario($UserName,$E_mail,$Passwd,$NomeCmplt,$DataNasci,$idturma,$id_creden){
-include('getinf.php');
+include_once('getinf.php');
 if(InscricoesAtivas()&&UsuarioPermitido($UserName,$E_mail)){
 $retornoCod = 4; //Erros inesperados
 include('zconbd.php');
@@ -73,7 +73,7 @@ else return 8; //Erro desconhecido :x
 //=========================================================================
 
 function logar_usuario($UserName,$Passwd){
-include("./phlib/getinf.php");
+include_once("./phlib/getinf.php");
 $keyRead = GetKeyByCredenLogin($UserName,$Passwd);
 $resumo = $keyRead["errorcode"];
 if ($resumo==1) AddCookieLog($keyRead["key"]);

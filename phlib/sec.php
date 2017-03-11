@@ -22,6 +22,7 @@ function GetCookieLog(){
 	return $_COOKIE["_lgmdt"];
 	else return null;
 }
+
 function CookieLogoff(){
 if (isset($_COOKIE['_lgmdt'])){
     unset($_COOKIE['_lgmdt']);

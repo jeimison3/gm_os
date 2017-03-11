@@ -1,3 +1,33 @@
+<?php
+function includModule($mdlNm){
+	include_once('./modules/'.$mdlNm.'/module.php');
+}
+
+function getifacesData(){
+include_once('./entidades/module_array.php');
+$ModArr = new ModuleArray();
+$ModArr->addPreloadModule("main","MainModule");
+$ModArr->addPreloadModule("test","Test");
+$ModArr->preloadedModulesSetup();//Carrega e registra módulos 
+$ModArr->initModules();//Extrai dados
+
+$dados = $ModArr->getDataModules();
+
+//var_dump($dados);
+
+
+$html='<div class="container">
+<div class="col-xs-12 col-sm-offset-2 col-sm-8" id="panelLogd">';
+foreach($ModArr->getButtonsModules() as $moduleButn){
+	$html.= '<div class="btnMenu col-xs-6 col-sm-4 col-md-3" onclick="FormViewSpace(\''.$moduleButn['linkref'].'\',\''.$moduleButn['title'].'\')" style="background-color:'.$moduleButn['color'].';"><h1><span class="'.$moduleButn['icon'].'"></span></h1><b>'.$moduleButn['title'].'</b></div>';
+
+}
+
+$html.='</div></div>';
+return $html;
+}
+
+/*
 <div class="container">
 <div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6" id="atvRegis"></div>
 <script>
@@ -125,13 +155,6 @@ $(btnReg).attr({"type":"submit","class":"btn btn-success"});
 $(btnReg).css({"cursor":"pointer","width":"100%"});
 $(btnReg).html("Registrar");
 
-/*
-$(linhNom).append(inNom);
-$(linhUs).append(inUs);
-$(linhPas).append(inPas);
-$(linhDat).append(nascmDt);
-$(linhEmai).append(inEmai);
-*/
 $(linhBtnReg).append(btnReg);
 
 $(rowUs).append(linhUs);
@@ -218,10 +241,12 @@ $(formu).submit(function(e){
 				$(inEmai).attr("data-content","Parece que o e-mail '"+$(inEmai).val()+"' já está cadastrado.");
 				$(inEmai).popover('show');
 				$(inEmai).focus();
+				//alert("E-mail já registrado. Cód. 6");
 				}else if(response.status==7){
 				$(inUs).attr("data-content","O nome de usuário '"+$(inUs).val()+"' já está em uso.");
 				$(inUs).popover('show');
 				$(inUs).focus();
+				//alert("Usuário já registrado. Cód. 7");
 				}else alert("Erro desconhecido: Cód. "+response.status);
 				$(btnReg).show(100);
 			}
@@ -240,28 +265,7 @@ $(formu).submit(function(e){
 
 $("#atvRegis").append(formu);
 
-/*
-$(function(){
-var chck = setInterval(function(){
-if($(document).height()!=0){
-var Height = $(document).height(),Width = $(document).width();
-$(backgroundPage).css("background-image","url('./img/sky-949091.jpg')");
-$(backgroundPage).css("position","absolute");
-$(backgroundPage).css("left","0px");
-$(backgroundPage).css("top","0px");
-$(backgroundPage).css("width",Width+"px");
-$(backgroundPage).css("height",Height+"px");
-var blurVal= 4;
-$(backgroundPage).css("-webkit-filter","blur("+blurVal+"px)");
-$(backgroundPage).css("-moz-filter","blur("+blurVal+"px)");
-$(backgroundPage).css("-o-filter","blur("+blurVal+"px)");
-$(backgroundPage).css("-ms-filter","blur("+blurVal+"px)");
-$(backgroundPage).css("filter","blur("+blurVal+"px)");
-//$("body").prepend(backgroundPage);
-clearInterval(chck);
-}else{console.log("Erro...");}
-},100);
-});
-*/
 </script>
 </div>
+*/
+?>

@@ -1,15 +1,16 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta id="tema" name='theme-color' content='rgb(255,255,255)' />
-<link rel="stylesheet" href="lib/jquery-ui.min.css">
-<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="lib/bdphp.css">
+<link rel="stylesheet" href="lib/jquery-ui.min.css" />
+<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="lib/bdphp.css" />
 <script src="lib/jquery.min.js"></script>
 <script src="lib/jquery-ui.min.js"></script>
 <script src="lib/jquery.maskedinput.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/pagesh.js"></script>
 <script>
 var paginaAtiva=1;
 function nnulo(entrada){
@@ -44,14 +45,20 @@ function updPg(){updtPagn(paginaAtiva);}
 $(document).ready(function(){
 updPg();
 });
-
+function pageclick(nm){ console.log('Ir para: '+nm); }
 </script>
 <style>
+.btnMenu{
+	border: solid 2px rgba(255,255,255,0.7);
+	text-align:center;
+	cursor:pointer;
+}
+
 @keyframes moveBack{
 	0%{background-position: 0 0;}
-	25%{background-position: 0 40%;}
-	50%{background-position: 100% 40%;}
-	75%{background-position: 100% 0;}
+	30%{background-position: 0 40%;}
+	45%{background-position: 100% 40%;}
+	84%{background-position: 100% 0;}
 	100%{background-position: 0 0;}
 }
 .desabili:hover{

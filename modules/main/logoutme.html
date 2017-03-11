@@ -1,0 +1,28 @@
+<html>
+<head>
+<script src="../../lib/jquery.min.js"></script>
+<script>
+
+var sair = confirm("Tem certeza que deseja sair?");
+if(sair){
+	$.ajax({
+	url: "../../logout.php",
+	data: false,
+	type: "GET",
+	error: function (xhr, ajaxOptions, thrownError) { //Caso de ERRO
+	console.log("Erro:\n"+thrownError+'\n>'+xhr.responseText);
+	},
+	success: function(resu){
+	if(resu.status) $(parent.document.getElementById("ButtonClosePage")).hide();
+	document.write('<center><h1>'+resu.msg+'</h1></center>');
+	},
+	processData: false,	
+	cache: false,
+	contentType: false
+	});
+}else{
+$(parent.document.getElementById("ButtonClosePage")).click();
+}
+</script>
+</head>
+</html>
