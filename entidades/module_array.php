@@ -31,8 +31,13 @@ class ModuleArray{
 		//2º: Extrai botões.
 		foreach($module->MenuReference() as $botaoTmp)
 		array_push(self::$buttonModules,$botaoTmp);
+		}	
+	}
+	
+	function postInitModules(){
+		foreach(self::$modules as $module){
+		$module->postInitModules();
 		}
-		
 	}
 	
 	function getDataModules(){return self::$dataModules;}

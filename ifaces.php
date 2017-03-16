@@ -1,24 +1,31 @@
 <?php
+include_once('./entidades/module_array.php');
+
+class iFaces{
+	static public $ModulArr;
+}
+
 function includModule($mdlNm){
 	include_once('./modules/'.$mdlNm.'/module.php');
 }
 
 function getifacesData(){
-include_once('./entidades/module_array.php');
-$ModArr = new ModuleArray();
-$ModArr->addPreloadModule("main","MainModule");
-$ModArr->addPreloadModule("test","Test");
-$ModArr->preloadedModulesSetup();//Carrega e registra módulos 
-$ModArr->initModules();//Extrai dados
 
-$dados = $ModArr->getDataModules();
+iFaces::$ModulArr = new ModuleArray();
+iFaces::$ModulArr->addPreloadModule("main","MainModule");
+iFaces::$ModulArr->addPreloadModule("test","Test");
+iFaces::$ModulArr->preloadedModulesSetup();//Carrega e registra módulos 
+iFaces::$ModulArr->initModules();//Extrai dados
+iFaces::$ModulArr->postInitModules();//Extrai dados
+
+$dados = iFaces::$ModulArr->getDataModules();
 
 //var_dump($dados);
 
 
 $html='<div class="container">
 <div class="col-xs-12 col-sm-offset-2 col-sm-8" id="panelLogd">';
-foreach($ModArr->getButtonsModules() as $moduleButn){
+foreach(iFaces::$ModulArr->getButtonsModules() as $moduleButn){
 	$html.= '<div class="btnMenu col-xs-6 col-sm-4 col-md-3" onclick="FormViewSpace(\''.$moduleButn['linkref'].'\',\''.$moduleButn['title'].'\')" style="background-color:'.$moduleButn['color'].';"><h1><span class="'.$moduleButn['icon'].'"></span></h1><b>'.$moduleButn['title'].'</b></div>';
 
 }

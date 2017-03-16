@@ -7,6 +7,11 @@ class Test{
 		"app_ver"=>1.000);
 	}
 	
+	function postInitModules(){
+		echo("Carregados:".
+		iFaces::$ModulArr->findModuleClass("app.main")->initModules()["app_name"]);
+	}
+	
 	function MenuReference(){
 		return array(
 		array('title'=>'TESTE 1',

@@ -7,6 +7,10 @@ class MainModule{
 		"app_ver"=>1.000);
 	}
 	
+	function postInitModules(){
+		
+	}
+	
 	function MenuReference(){
 		return array(
 		array('title'=>'Perfil',
